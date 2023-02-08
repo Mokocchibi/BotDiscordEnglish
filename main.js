@@ -1,10 +1,13 @@
 require("dotenv").config();
 
 const Discord = require("discord.js");
-const Bot = new Discord.Client({intents: 3276799});
+const intents = new Discord.IntentsBitField(3276799);
+const Bot = new Discord.Client({intents});
+const loadCommands = require("./Loader/loadCommands");
+const loadEvents = require("./Loader/loadEvents");
 
-Bot.login(process.env.TOKEN)
+Bot.commands = new Discord.Collection();
 
-Bot.on("ready", async () => {
-    console.log(`${Bot.user.tag} est en ligne`)
-})
+Bot.login(process.env.TOKEN);
+loadCommands(Bot);
+loadEvents(Bot);
