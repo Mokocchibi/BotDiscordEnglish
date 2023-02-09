@@ -28,32 +28,32 @@ module.exports = {
         const questions = [
             {
                 "nQuestion": 1,
-                "title": "Question 1",
-                "answer1": "Answer 1",
-                "answer2": "Answer 2",
-                "answer3": "Answer 3",
-                "answer4": "Answer 4",
-                "answer": "1",
+                "title": "When Discord was created ?",
+                "answer1": "2014",
+                "answer2": "2015",
+                "answer3": "2016",
+                "answer4": "2017",
+                "answer": "2",
                 "color": "Red"
             },
             {
                 "nQuestion": 2,
-                "title": "Question 2",
-                "answer1": "Answer 1",
-                "answer2": "Answer 2",
-                "answer3": "Answer 3",
-                "answer4": "Answer 4",
-                "answer": "3",
+                "title": "Is \"Better Discord\" allowed by Discord?",
+                "answer1": "Yes",
+                "answer2": "No",
+                "answer3": "",
+                "answer4": "",
+                "answer": "2",
                 "color": "Red"
             },
             {
                 "nQuestion": 3,
-                "title": "Question 3",
-                "answer1": "Answer 1",
-                "answer2": "Answer 2",
-                "answer3": "Answer 3",
-                "answer4": "Answer 4",
-                "answer": "4",
+                "title": "What is a Runtime environment ?",
+                "answer1": "The terminal",
+                "answer2": "A software to run programs",
+                "answer3": "The Operating System",
+                "answer4": "A virtual space in the PC where the program has admin authorisation",
+                "answer": "2",
                 "color": "Red"
             }
         ]
