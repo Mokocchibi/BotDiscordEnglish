@@ -17,24 +17,8 @@ module.exports = {
 
         let participants = []
 
-        const button = new ActionRowBuilder()
+        let button = new ActionRowBuilder()
             .addComponents(
-                new ButtonBuilder()
-                    .setCustomId("1")
-                    .setLabel("1")
-                    .setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder()
-                    .setCustomId("2")
-                    .setLabel("2")
-                    .setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder()
-                    .setCustomId("3")
-                    .setLabel("3")
-                    .setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder()
-                    .setCustomId("4")
-                    .setLabel("4")
-                    .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId("next")
                     .setLabel("Next")
@@ -74,20 +58,20 @@ module.exports = {
             }
         ]
 
+        let isPresentationShowingPhase = true;
         let isAnwsersShowingPhase = true;
         let cantAnswer = false;
 
         let nbQuestion = 1;
 
         let currentQuestion = questions[nbQuestion-1];
-        let currentMessage;
 
         let embed  = new EmbedBuilder()
             .setColor(currentQuestion.color)
-            .setTitle(currentQuestion.title)
-            .setDescription(`1 - ${currentQuestion.answer1}\n2 - ${currentQuestion.answer2}\n3 - ${currentQuestion.answer3}\n4 - ${currentQuestion.answer4}`);
+            .setTitle("DiscordJS Quizz")
+            .setDescription(`Ce quizz est semblable à un kahoot, plus on répond vite, plus on gagne des points.\nBon quizz !`);
 
-        currentMessage = await message.channel.send({ embeds: [embed], components: [button]});
+        await message.channel.send({ embeds: [embed], components: [button]});
 
         const collector = await message.channel.createMessageComponentCollector();
 
@@ -143,6 +127,41 @@ module.exports = {
                     if ( !(data.user.id === "503568040001273877" || data.user.id === "363781911346151424") ) {
                         return await i.reply({content: "Vous n'êtes pas autorisé à passer à la prochaine question, veuillez attendre que les organisateurs le fasse.", ephemeral: true});
                     } else {
+
+                        if (isPresentationShowingPhase) {
+                            isPresentationShowingPhase = false;
+
+                            button = new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId("1")
+                                    .setLabel("1")
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId("2")
+                                    .setLabel("2")
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId("3")
+                                    .setLabel("3")
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId("4")
+                                    .setLabel("4")
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId("next")
+                                    .setLabel("Next")
+                                    .setStyle(ButtonStyle.Primary),
+                            );
+
+                            embed = new EmbedBuilder()
+                                    .setColor(currentQuestion.color)
+                                    .setTitle(currentQuestion.title)
+                                    .setDescription(`1 - ${currentQuestion.answer1}\n2 - ${currentQuestion.answer2}\n3 - ${currentQuestion.answer3}\n4 - ${currentQuestion.answer4}`);
+
+                            return await i.update({ embeds: [embed], components: [button] });
+                        }
 
                         if (isAnwsersShowingPhase) {
                             cantAnswer = true;
@@ -224,6 +243,11 @@ module.exports = {
                                     .setImage(avatar);
 
                                 await i.update({ embeds: [embed], components: [] });
+
+                                isPresentationShowingPhase = true;
+                                isAnwsersShowingPhase = true;
+
+                                participants = []
                             }
                         }
                     }
