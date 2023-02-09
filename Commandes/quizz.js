@@ -69,7 +69,7 @@ module.exports = {
         let embed  = new EmbedBuilder()
             .setColor(currentQuestion.color)
             .setTitle("DiscordJS Quizz")
-            .setDescription(`Ce quizz est semblable à un kahoot, plus on répond vite, plus on gagne des points. Il contient ${questions.length} questions.\nVous n'avez pas à vous inscrire au quizz, vous serez inscrit au moment où vous répondrez à une question.\nBon quizz !`);
+            .setDescription(`This quiz is similar to a kahoot, the faster you answer, the more points you earn. It contains ${questions.length} questions.\nYou do not have to register for the quiz, you will be registered the moment you answer a question.\nGood quiz !`);
 
         await message.channel.send({ embeds: [embed], components: [button]});
 
