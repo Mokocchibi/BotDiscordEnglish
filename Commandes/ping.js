@@ -10,7 +10,7 @@ module.exports = {
 
     async run(Bot, message) {
 
-        return await message.reply(`Ping : \`${Bot.ws.ping}\``);
+        return await message.reply({ content: `Ping : \`${Bot.ws.ping}\``, ephemeral: true});
 
     }
 

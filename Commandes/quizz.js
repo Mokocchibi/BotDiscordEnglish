@@ -1,3 +1,6 @@
+const Discord = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
+
 module.exports = {
 
     name: "quizz",
@@ -11,9 +14,6 @@ module.exports = {
         if ( !(message.user.id === "503568040001273877" || message.user.id === "363781911346151424") ) {
             return message.reply({content: "Vous n'êtes pas autorisé à utiliser cette commande.", ephemeral: true});
         }
-
-        const Discord = require("discord.js");
-        const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require("discord.js");
 
         let participants = []
 
@@ -69,7 +69,7 @@ module.exports = {
         let embed  = new EmbedBuilder()
             .setColor(currentQuestion.color)
             .setTitle("DiscordJS Quizz")
-            .setDescription(`Ce quizz est semblable à un kahoot, plus on répond vite, plus on gagne des points.\nBon quizz !`);
+            .setDescription(`Ce quizz est semblable à un kahoot, plus on répond vite, plus on gagne des points. Il contient ${questions.length} questions.\nVous n'avez pas à vous inscrire au quizz, vous serez inscrit au moment où vous répondrez à une question.\nBon quizz !`);
 
         await message.channel.send({ embeds: [embed], components: [button]});
 
